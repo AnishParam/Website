@@ -93,6 +93,14 @@ a:hover {
     transform: scale(1.2);
 }
 
+.typing {
+    max-height: 300px;
+    justify-content: center;
+    width: auto;
+    max-width: 50%; /* Prevent images from dominating on small screens */
+    flex-shrink: 0;
+}
+
 .divider {
     display: flex;
     align-items: center;
