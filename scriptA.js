@@ -5,25 +5,16 @@ clicksound.pause();
 
 function openPDF(filePath) {
     const pdfOverlay = document.getElementById("pdfOverlay");
-    
-    // Clear and rebuild the PDF viewer
+
+    // clear and rebuild the PDF viewer
     const oldViewer = document.getElementById("pdfViewer");
     const newViewer = document.createElement("object");
     newViewer.id = "pdfViewer";
     newViewer.type = "application/pdf";
     newViewer.data = filePath;
-    newViewer.setAttribute("style", "width: 100%; height: 100%;");
 
     oldViewer.replaceWith(newViewer);
     pdfOverlay.style.display = "block";
-    
-    // Prevent body scrolling when PDF is open
-    document.body.style.overflow = "hidden";
-    
-    // Add touch event prevention for iOS
-    newViewer.addEventListener("touchmove", function(e) {
-        e.stopPropagation();
-    }, { passive: false });
 }
 
 function pageclick() {
@@ -110,13 +101,8 @@ window.onload = () => {
     window.addEventListener('scroll', scrollfade);
     window.addEventListener('resize', scrollfade);
     
-    const pdfOverlay = document.getElementById("pdfOverlay");
-    pdfOverlay.addEventListener("click", (e) => {
-        // Only close if clicking on the overlay background, not the PDF itself
-        if (e.target === pdfOverlay) {
-            pdfOverlay.style.display = "none";
-            document.getElementById("pdfViewer").src = "";
-            document.body.style.overflow = "auto"; // Re-enable body scrolling
-        }
+    pdfOverlay.addEventListener("click", () => {
+        pdfOverlay.style.display = "none";
+        document.getElementById("pdfViewer").src = "";
     });
 };

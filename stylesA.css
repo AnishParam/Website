@@ -232,38 +232,17 @@ a:hover {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.85);
     z-index: 1000;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
-    touch-action: manipulation;
-}
+    cursor: pointer;
+  }
 
 .pdf-overlay object {
-    width: 95%;
-    height: auto;
-    min-height: 90%;
+    width: 90%;
+    height: 90%;
     margin: 2% auto;
     display: block;
     background: white;
     border: 4px solid #c29d9d;
-    overflow: auto;
-}
-
-/* Add media queries for different screen sizes */
-@media (max-width: 768px) {
-    .pdf-overlay object {
-        width: 98%;
-        height: auto;
-        margin: 1% auto;
-    }
-}
-
-@media (max-width: 480px) {
-    .pdf-overlay object {
-        width: 100%;
-        border: none;
-        margin: 0;
-    }
-}
+  }
 
 .delete-animation {
     position: relative;
