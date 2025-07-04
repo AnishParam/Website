@@ -21,7 +21,6 @@ function pageclick() {
     const link = document.getElementById("index");
     const linkP = document.getElementById("project");
     const linkR = document.getElementById("resume");
-    const pdfOverlay = document.getElementById("pdfOverlay");
 
     if (link) {
         link.addEventListener("click", (e) => {

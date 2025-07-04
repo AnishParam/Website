@@ -147,11 +147,11 @@ a:hover {
     top: 0;             /* Aligns with the top edge */
     left: 0;
     right: 0;
-    height: 3px;        /* Matches border thickness */
-    background: currentColor; /* Same as border color */
+    height: 3px;        
+    background: currentColor; 
     box-shadow: 
       0 2px 0 #856a6a,     /* Hard shadow (offset-y, no blur/spread) */
-      0 3px 0 #856a6a;     /* Optional: Double shadow for bolder effect */
+      0 3px 0 #856a6a;     
     transform: translateY(-3px); /* Moves shadow above the border */
 }
   
@@ -162,11 +162,11 @@ a:hover {
     bottom: 0;          /* Aligns with the bottom edge */
     left: 0;
     right: 0;
-    height: 3px;        /* Matches border thickness */
-    background: currentColor; /* Same as border color */
+    height: 3px;       
+    background: currentColor; 
     box-shadow: 
       0 2px 0 #856a6a,    /* Hard shadow (offset-y, no blur/spread) */
-      0 3px 0 #856a6a;    /* Optional: Double shadow for bolder effect */
+      0 3px 0 #856a6a;    
     transform: translateY(3px); /* Moves shadow below the border */
 }
 

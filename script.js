@@ -60,9 +60,6 @@ function linkclick() {
 
             setTimeout ( () => {
 
-                const homepage = document.getElementById("homepage");
-                const homepage2 = document.getElementById("homepage2");
-                const linkContainer = document.querySelector(".link-container");
                 const content = document.querySelector(".content-container");
 
                 content.classList.add("delete-animation");
@@ -85,9 +82,6 @@ function linkclick() {
 
             setTimeout ( () => {
 
-                const homepage = document.getElementById("homepage");
-                const homepage2 = document.getElementById("homepage2");
-                const linkContainer = document.querySelector(".link-container");
                 const content = document.querySelector(".content-container");
 
                 content.classList.add("delete-animation");
