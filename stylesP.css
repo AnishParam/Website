@@ -305,3 +305,9 @@ a:hover {
     color: #c29d9d; /* Your accent color */
     display: inline-block;
 }
+
+.image-row {
+  display: flex;
+  align-items: center; /* vertically align them */
+  gap: 10px; /* space between the images */
+}
