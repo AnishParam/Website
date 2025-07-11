@@ -87,7 +87,7 @@ a:hover {
     justify-content: center;
     gap: 2rem; /* Responsive spacing between items */
     width: 100%;
-    padding: 0 20px; /* Prevent edge squishing */
+    padding: 0 20px;
 }
 
 .right-image {
@@ -111,10 +111,9 @@ a:hover {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 100%; /* Take full available width */
-    max-width: 550px; /* Prevent excessive stretching */
-    min-width: 300px; /* Ensure readability on small screens */
-
+    width: 100%; 
+    max-width: 550px; 
+    min-width: 300px; 
 }
 
 /* X.XXem-> space equal to X.XX times the font size currently used */

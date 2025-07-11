@@ -6,7 +6,6 @@ clicksound.pause();
 function openPDF(filePath) {
     const pdfOverlay = document.getElementById("pdfOverlay");
 
-    // clear and rebuild the PDF viewer
     const oldViewer = document.getElementById("pdfViewer");
     const newViewer = document.createElement("object");
     newViewer.id = "pdfViewer";

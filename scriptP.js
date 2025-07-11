@@ -6,7 +6,6 @@ clicksound.pause();
 function openPDF(filePath) {
     const pdfOverlay = document.getElementById("pdfOverlay");
 
-    // clear and rebuild the PDF viewer
     const oldViewer = document.getElementById("pdfViewer");
     const newViewer = document.createElement("object");
     newViewer.id = "pdfViewer";
@@ -20,10 +19,9 @@ function openPDF(filePath) {
 function openImage(imgPath) {
     const pdfOverlay = document.getElementById("pdfOverlay");
 
-    // Clear and rebuild the image viewer
     const oldViewer = document.getElementById("pdfViewer");
     const newViewer = document.createElement("div");
-    newViewer.id = "pdfViewer";  // reuse same ID to simplify overlay reuse
+    newViewer.id = "pdfViewer"; 
 
     const image = document.createElement("img");
     image.src = imgPath;
