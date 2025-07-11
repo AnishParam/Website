@@ -309,5 +309,5 @@ a:hover {
 .image-row {
   display: flex;
   align-items: center; /* vertically align them */
-  gap: 10px; /* space between the images */
+  gap: 8px; /* space between the images */
 }
