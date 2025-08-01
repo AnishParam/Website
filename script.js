@@ -9,7 +9,7 @@ var k = 0;
 var homepage = 'Anish Paramsothy';
 var homepage2 = 'Portfolio';
 var aboutme = 'About Me';
-var speed = 50;
+var speed = 30;
 
 const clicksound = new Audio("sounds/button-click.mp3");
 clicksound.preload = 'auto';
@@ -43,7 +43,7 @@ function typeWriter2() {
         setTimeout( () => {
                 document.getElementById("about").style.visibility = "visible";
                 document.getElementById("project").style.visibility = "visible";
-            }, 400);
+            }, 100);
     }
 }
 
@@ -69,7 +69,7 @@ function linkclick() {
                 setTimeout(() => {
                     window.location.href = link.href; 
                 }, 2000);
-            }, 300);
+            }, 200);
         });
     }
     if (linkP) {

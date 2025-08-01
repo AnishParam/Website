@@ -36,6 +36,8 @@ function pageclick() {
     const linkP = document.getElementById("about");
     const linkproject1 = document.getElementById("REMOTEVEHICLEREPORT");
     const linkproject1a = document.getElementById("REMOTEVEHICLEDRAWINGPACKAGE");
+    const linkproject4 = document.getElementById("REMOTEVEHICLEREPORT");
+    const linkproject4a = document.getElementById("TOYENGINEDRAWINGPACKAGE");
     const linkproject2 = document.getElementById("SDRAM");
     const linkproject3 = document.getElementById("SIGNALPROCESSOR");
     const art1 = document.getElementById("ART1");
@@ -138,6 +140,36 @@ function pageclick() {
             
             setTimeout(() => {
                 linkproject3.classList.remove("clicked");
+            }, 500);
+        });
+    }
+
+    if(linkproject4) {
+        linkproject4.addEventListener("click", (e) => {
+            e.preventDefault();
+            linkproject4.classList.add("clicked");
+            clicksound.currentTime = 0;
+            clicksound.play();
+            
+            openPDF("PDFs/AnishParamsothy_DesignReport.pdf");
+            
+            setTimeout(() => {
+                linkproject4.classList.remove("clicked");
+            }, 500);
+        });
+    }
+
+    if(linkproject4a) {
+        linkproject4a.addEventListener("click", (e) => {
+            e.preventDefault();
+            linkproject4a.classList.add("clicked");
+            clicksound.currentTime = 0;
+            clicksound.play();
+            
+            openPDF("PDFs/ENG-DRAWING_PACKAGE.pdf");
+
+            setTimeout(() => {
+                linkproject4a.classList.remove("clicked");
             }, 500);
         });
     }
