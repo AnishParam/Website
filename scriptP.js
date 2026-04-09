@@ -34,6 +34,8 @@ function openImage(imgPath) {
 function pageclick() {
     const link = document.getElementById("index");
     const linkP = document.getElementById("about");
+    const linkprojectCAPSTONE = document.getElementById("CAPSTONEPOSTER");
+    const linkprojectVIDEO = document.getElementById("CAPSTONEVIDEO");
     const linkproject1 = document.getElementById("REMOTEVEHICLEREPORT");
     const linkproject1a = document.getElementById("REMOTEVEHICLEDRAWINGPACKAGE");
     const linkproject4 = document.getElementById("TOYENGINEREPORT");
@@ -84,6 +86,37 @@ function pageclick() {
         });
     }
     
+    if(linkprojectCAPSTONE) {
+        linkprojectCAPSTONE.addEventListener("click", (e) => {
+            e.preventDefault();
+            linkprojectCAPSTONE.classList.add("clicked");
+            clicksound.currentTime = 0;
+            clicksound.play();
+            
+            openPDF("PDFs/MT-Group-3.pdf");
+            
+            setTimeout(() => {
+                linkprojectCAPSTONE.classList.remove("clicked");
+            }, 500);
+        });
+    }
+
+    if(linkprojectVIDEO) {
+            linkprojectVIDEO.addEventListener("click", (e) => {
+                e.preventDefault();
+                linkprojectVIDEO.classList.add("clicked");
+                clicksound.currentTime = 0;
+                clicksound.play();
+                
+                // Opens the standard YouTube watch link in a new browser tab
+                window.open("https://www.youtube.com/watch?v=hzakEC6zYgg", "_blank");
+                
+                setTimeout(() => {
+                    linkprojectVIDEO.classList.remove("clicked");
+                }, 500);
+            });
+        }
+
     if(linkproject1) {
         linkproject1.addEventListener("click", (e) => {
             e.preventDefault();
@@ -91,7 +124,7 @@ function pageclick() {
             clicksound.currentTime = 0;
             clicksound.play();
             
-            openPDF("PDFs/AnishParamsothy_DesignReport.pdf");
+            openPDF("AnishParamsothy_DesignReport.pdf");
             
             setTimeout(() => {
                 linkproject1.classList.remove("clicked");
@@ -268,6 +301,21 @@ function scrollfade() {
         }
     })
 
+}
+
+function openVideo(videoUrl) {
+    const pdfOverlay = document.getElementById("pdfOverlay");
+    const oldViewer = document.getElementById("pdfViewer");
+
+    const newViewer = document.createElement("iframe");
+    newViewer.id = "pdfViewer";
+    newViewer.src = videoUrl;
+    newViewer.setAttribute("frameborder", "0");
+    newViewer.setAttribute("allow", "autoplay; encrypted-media");
+    newViewer.setAttribute("allowfullscreen", "true");
+
+    oldViewer.replaceWith(newViewer);
+    pdfOverlay.style.display = "block";
 }
 
 window.onload = () => {
