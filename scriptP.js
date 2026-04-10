@@ -57,12 +57,10 @@ function pageclick() {
             setTimeout (() => {
                 const content = document.querySelector(".content-container");
 
-                content.classList.add("delete-animation");
-
                 document.body.style.pointerEvents = 'none';
                 setTimeout(() => {
                     window.location.href = link.href; 
-                }, 3000);
+                }, 500);
             }, 300);
         });
     }
@@ -76,12 +74,10 @@ function pageclick() {
             setTimeout (() => {
                 const content = document.querySelector(".content-container");
 
-                content.classList.add("delete-animation");
-
                 document.body.style.pointerEvents = 'none';
                 setTimeout(() => {
                     window.location.href = linkP.href; 
-                }, 3000);
+                }, 500);
             }, 300);
         });
     }
