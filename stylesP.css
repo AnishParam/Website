@@ -81,6 +81,15 @@ a:hover {
     flex: 1; /* Takes up 1/3 of the container width */
 }
 
+.logo-image {
+    max-width: 80%;       /* Prevents the logo from touching the very edges of the box */
+    height: auto;         /* Allows the height to scale naturally with the width, saving vertical space */
+    max-height: 150px;    /* Sets a hard cap so it never gets too tall */
+    margin: 20px auto;    /* Centers the image horizontally and adds some breathing room on top and bottom */
+    display: block;       /* Required for margin: auto to center the image properly */
+    object-fit: contain;  
+}
+
 .main-image {
     display: flex;
     justify-content: center;
