@@ -2,13 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="217.13281mm"
-   height="53.181015mm"
-   viewBox="0 0 217.13281 53.181015"
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
    sodipodi:docname="LOGO.svg"
+   inkscape:export-filename="LOGO.svg"
+   inkscape:export-xdpi="584.89551"
+   inkscape:export-ydpi="584.89551"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,21 +26,21 @@
      inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.89009139"
-     inkscape:cx="546.57309"
-     inkscape:cy="384.79195"
+     inkscape:zoom="0.62938966"
+     inkscape:cx="461.55827"
+     inkscape:cy="415.48188"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
-     inkscape:window-x="-8"
+     inkscape:window-x="841"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1">
     <inkscape:page
        x="0"
        y="0"
-       width="217.13281"
-       height="53.181015"
-       id="page1"
+       width="297"
+       height="210"
+       id="page2"
        margin="0"
        bleed="0" />
   </sodipodi:namedview>
@@ -46,8 +49,7 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-44.904311,-75.784097)">
+     id="layer1">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.8222px;font-family:Silkscreen;-inkscape-font-specification:Silkscreen;writing-mode:lr-tb;direction:ltr;fill:#ffffff;stroke-width:0.192639"
@@ -64,8 +66,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer 2"
-     transform="translate(-44.904311,-75.784097)">
+     inkscape:label="Layer 2">
     <path
        style="font-weight:bold;font-size:266.667px;font-family:Silkscreen;-inkscape-font-specification:Silkscreen;white-space:pre;fill:#ffffff;stroke-width:0.150544"
        d="m 48.88933,81.126476 -3.72e-4,8.426904 -3.984645,0.81238 v 23.7204 l 3.983779,0.7395 -3.7e-4,8.42067 15.839949,4.9959 0.0019,-10.47636 7.151772,1.32736 0.009,-34.229539 -7.154619,1.458656 0.0019,-10.48532 z m 4.542284,7.861391 5.22652,-1.038556 -0.0039,28.301309 -5.224912,-0.94259 z"
