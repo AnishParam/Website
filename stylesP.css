@@ -389,3 +389,36 @@ a:hover {
     justify-content: space-between; 
     margin-bottom: 0.5rem; 
 }
+
+.inline-art {
+    height: 300px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto 0 auto;
+    border: 4px solid #e6dede;
+    box-shadow: 10px 10px 0 #302323;
+    background: #413030;
+}
+
+.art-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.art-grid > div {
+    flex: 1 1 calc(50% - 16px);
+    min-width: 200px;
+    box-sizing: border-box;
+}
+
+#posterViewer canvas {
+    display: block;
+    margin: 0 auto 10px auto;
+    max-width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}

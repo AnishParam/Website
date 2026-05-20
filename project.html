@@ -7,6 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     </head>
     <body>
         <main class="content-container">
@@ -92,11 +93,7 @@
                             </h3>
                         </div>
                         <div class="DDB" style="text-align: center">
-                        <a href="#" id="CAPSTONEPOSTER">
-                            <div class = "linkborder">
-                            <h3>Click to view capstone poster.</h3>
-                            </div>
-                        </a>
+                        <div id="posterViewer"></div>
                         <div class="dividervert"></div>
                         <a href="#" id="CAPSTONEVIDEO">
                             <div class="linkborder">
@@ -304,44 +301,32 @@
                             </div>
                             <h3>Below are several artworks I have completed over several years. I love working in many different mediums such as pencil/ink, paint and digital art! Click the links below to view.</h3>
                             <div class="dividervert"></div>
-                            <div class="DDB" style="text-align: center">
-                                <a href="#" id="ART1">
-                                    <div class = "linkborder">
-                                    <h3>Chadwick Boseman Portrait (Pencil)</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="dividervert"></div>
-                            <div class="DDB" style="text-align: center">
-                                <a href="#" id="ART2">
-                                    <div class = "linkborder">
-                                    <h3>Benedict Cumberbatch Portrait (Painting)</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="dividervert"></div>
-                            <div class="DDB" style="text-align: center">
-                                <a href="#" id="ART3">
-                                    <div class = "linkborder">
-                                    <h3>Anime Poster Recreation (Digital)</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="dividervert"></div>
-                            <div class="DDB" style="text-align: center">
-                                <a href="#" id="ART4">
-                                    <div class = "linkborder">
-                                    <h3>Anime Poster 1 (Original, Digital)</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="dividervert"></div>
-                            <div class="DDB" style="text-align: center">
-                                <a href="#" id="ART5">
-                                    <div class = "linkborder">
-                                    <h3>Anime Poster 2 (Original, Digital)</h3>
-                                    </div>
-                                </a>
+                            <div class="art-grid">
+                                <div class="DDB" style="text-align: center;">
+                                    <h3>Chadwick Boseman Portrait</h3>
+                                    <h4>(Pencil)</h4>
+                                    <img src="images/anish_orig.jpg" alt="Chadwick Boseman Portrait" class="inline-art" loading="lazy">
+                                </div>
+                                <div class="DDB" style="text-align: center;">
+                                    <h3>Benedict Cumberbatch Portrait</h3>
+                                    <h4>(Painting)</h4>
+                                    <img src="images/anish2_orig.jpg" alt="Benedict Cumberbatch Portrait" class="inline-art" loading="lazy">
+                                </div>
+                                <div class="DDB" style="text-align: center;">
+                                    <h3>Anime Poster Recreation</h3>
+                                    <h4>(Digital)</h4>
+                                    <img src="images/poster4.jpg" alt="Anime Poster Recreation" class="inline-art" loading="lazy">
+                                </div>
+                                <div class="DDB" style="text-align: center;">
+                                    <h3>Anime Poster 1</h3>
+                                    <h4>(Original, Digital)</h4>
+                                    <img src="images/poster3.jpg" alt="Anime Poster 1" class="inline-art" loading="lazy">
+                                </div>
+                                <div class="DDB" style="text-align: center;">
+                                    <h3>Anime Poster 2</h3>
+                                    <h4>(Original, Digital)</h4>
+                                    <img src="images/poster2.jpg" alt="Anime Poster 2" class="inline-art" loading="lazy">
+                                </div>
                             </div>
                         </div>
                     </div>

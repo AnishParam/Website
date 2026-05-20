@@ -3,6 +3,19 @@ clicksound.preload = 'auto';
 clicksound.play();
 clicksound.pause();
 
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+function openPDForNewTab(filePath) {
+    if (isIOS()) {
+        window.open(filePath, "_blank");
+    } else {
+        openPDF(filePath);
+    }
+}
+
 function openPDF(filePath) {
     const pdfOverlay = document.getElementById("pdfOverlay");
 
@@ -34,7 +47,6 @@ function openImage(imgPath) {
 function pageclick() {
     const link = document.getElementById("index");
     const linkP = document.getElementById("about");
-    const linkprojectCAPSTONE = document.getElementById("CAPSTONEPOSTER");
     const linkprojectVIDEO = document.getElementById("CAPSTONEVIDEO");
     const linkproject1 = document.getElementById("REMOTEVEHICLEREPORT");
     const linkproject1a = document.getElementById("REMOTEVEHICLEDRAWINGPACKAGE");
@@ -42,11 +54,6 @@ function pageclick() {
     const linkproject4a = document.getElementById("TOYENGINEDRAWINGPACKAGE");
     const linkproject2 = document.getElementById("SDRAM");
     const linkproject3 = document.getElementById("SIGNALPROCESSOR");
-    const art1 = document.getElementById("ART1");
-    const art2 = document.getElementById("ART2");
-    const art3 = document.getElementById("ART3");
-    const art4 = document.getElementById("ART4");
-    const art5 = document.getElementById("ART5");
 
     if (link) {
         link.addEventListener("click", (e) => {
@@ -82,21 +89,6 @@ function pageclick() {
         });
     }
     
-    if(linkprojectCAPSTONE) {
-        linkprojectCAPSTONE.addEventListener("click", (e) => {
-            e.preventDefault();
-            linkprojectCAPSTONE.classList.add("clicked");
-            clicksound.currentTime = 0;
-            clicksound.play();
-            
-            openPDF("PDFs/MT-Group-3.pdf");
-            
-            setTimeout(() => {
-                linkprojectCAPSTONE.classList.remove("clicked");
-            }, 500);
-        });
-    }
-
     if(linkprojectVIDEO) {
             linkprojectVIDEO.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -120,7 +112,7 @@ function pageclick() {
             clicksound.currentTime = 0;
             clicksound.play();
             
-            openPDF("AnishParamsothy_DesignReport.pdf");
+            openPDForNewTab("AnishParamsothy_DesignReport.pdf");
             
             setTimeout(() => {
                 linkproject1.classList.remove("clicked");
@@ -135,7 +127,7 @@ function pageclick() {
             clicksound.currentTime = 0;
             clicksound.play();
             
-            openPDF("PDFs/DP-Drawing_Package.pdf");
+            openPDForNewTab("PDFs/DP-Drawing_Package.pdf");
 
             setTimeout(() => {
                 linkproject1a.classList.remove("clicked");
@@ -150,7 +142,7 @@ function pageclick() {
             clicksound.currentTime = 0;
             clicksound.play();
             
-            openPDF("PDFs/Group11_3TB4_Lab4_POSTLABReport.pdf");
+            openPDForNewTab("PDFs/Group11_3TB4_Lab4_POSTLABReport.pdf");
             
             setTimeout(() => {
                 linkproject2.classList.remove("clicked");
@@ -165,7 +157,7 @@ function pageclick() {
             clicksound.currentTime = 0;
             clicksound.play();
             
-            openPDF("PDFs/Group11_3TB4_Lab3_POSTLABReport.pdf");
+            openPDForNewTab("PDFs/Group11_3TB4_Lab3_POSTLABReport.pdf");
             
             setTimeout(() => {
                 linkproject3.classList.remove("clicked");
@@ -180,7 +172,7 @@ function pageclick() {
             clicksound.currentTime = 0;
             clicksound.play();
             
-            openPDF("PDFs/AnishParamsothy_ENGINE_DesignReport.pdf");
+            openPDForNewTab("PDFs/AnishParamsothy_ENGINE_DesignReport.pdf");
             
             setTimeout(() => {
                 linkproject4.classList.remove("clicked");
@@ -195,89 +187,56 @@ function pageclick() {
             clicksound.currentTime = 0;
             clicksound.play();
             
-            openPDF("PDFs/ENG-DRAWING_PACKAGE.pdf");
+            openPDForNewTab("PDFs/ENG-DRAWING_PACKAGE.pdf");
 
             setTimeout(() => {
                 linkproject4a.classList.remove("clicked");
             }, 500);
         });
     }
+}
 
-    if(art1) {
-        art1.addEventListener("click", (e) => {
-            e.preventDefault();
-            art1.classList.add("clicked");
-            clicksound.currentTime = 0;
-            clicksound.play();
-            
-            openImage("images/anish_orig.jpg");
-            
-            setTimeout(() => {
-                art1.classList.remove("clicked");
-            }, 500);
-        });
+async function renderPDFInline(filePath, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    try {
+        const pdf = await pdfjsLib.getDocument(filePath).promise;
+        const containerWidth = container.clientWidth;
+
+        if (containerWidth === 0) {
+            container.innerHTML =
+                "<p style='color:#333;padding:20px;text-align:center;'>Failed to load poster.</p>";
+            return;
+        }
+
+        const dpr = window.devicePixelRatio || 1;
+
+        for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const viewport = page.getViewport({ scale: 1 });
+            const displayScale = containerWidth / viewport.width;
+            const renderScale = displayScale * dpr;
+            const display = page.getViewport({ scale: displayScale });
+            const render = page.getViewport({ scale: renderScale });
+
+            const canvas = document.createElement("canvas");
+            canvas.width = render.width;
+            canvas.height = render.height;
+            canvas.style.width = display.width + "px";
+            canvas.style.height = display.height + "px";
+
+            const ctx = canvas.getContext("2d");
+            await page.render({ canvasContext: ctx, viewport: render }).promise;
+            container.appendChild(canvas);
+        }
+    } catch (err) {
+        container.innerHTML =
+            "<p style='color:#333;padding:20px;text-align:center;'>Failed to load poster.</p>";
     }
-
-    if(art2) {
-        art2.addEventListener("click", (e) => {
-            e.preventDefault();
-            art2.classList.add("clicked");
-            clicksound.currentTime = 0;
-            clicksound.play();
-            
-            openImage("images/anish2_orig.jpg");
-            
-            setTimeout(() => {
-                art2.classList.remove("clicked");
-            }, 500);
-        });
-    }
-
-    if(art3) {
-        art3.addEventListener("click", (e) => {
-            e.preventDefault();
-            art3.classList.add("clicked");
-            clicksound.currentTime = 0;
-            clicksound.play();
-            
-            openImage("images/poster4.jpg");
-            
-            setTimeout(() => {
-                art3.classList.remove("clicked");
-            }, 500);
-        });
-    }
-
-    if(art4) {
-        art4.addEventListener("click", (e) => {
-            e.preventDefault();
-            art4.classList.add("clicked");
-            clicksound.currentTime = 0;
-            clicksound.play();
-            
-            openImage("images/poster3.jpg");
-            
-            setTimeout(() => {
-                art4.classList.remove("clicked");
-            }, 500);
-        });
-    }
-
-    if(art5) {
-        art5.addEventListener("click", (e) => {
-            e.preventDefault();
-            art5.classList.add("clicked");
-            clicksound.currentTime = 0;
-            clicksound.play();
-            
-            openImage("images/poster2.jpg");
-            
-            setTimeout(() => {
-                art5.classList.remove("clicked");
-            }, 500);
-        });
-    }
-
 }
 
 function scrollfade() {
@@ -319,8 +278,16 @@ window.onload = () => {
     scrollfade();
     window.addEventListener('scroll', scrollfade);
     window.addEventListener('resize', scrollfade);
+
+    renderPDFInline("PDFs/MT-Group-3.pdf", "posterViewer");
+
     pdfOverlay.addEventListener("click", () => {
         pdfOverlay.style.display = "none";
-        document.getElementById("pdfViewer").data = "";
+        const viewer = document.getElementById("pdfViewer");
+        if (viewer && viewer.tagName === "OBJECT") {
+            viewer.data = "";
+        } else if (viewer && viewer.tagName === "DIV") {
+            viewer.innerHTML = "";
+        }
     });
-}
+};
