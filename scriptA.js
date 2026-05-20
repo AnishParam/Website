@@ -13,10 +13,15 @@ function openPDF(filePath) {
     const oldViewer = document.getElementById("pdfViewer");
 
     if (isIOS()) {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const containerWidth = vw * 0.9 - 20;
         const container = document.createElement("div");
         container.id = "pdfViewer";
         container.style.cssText = [
-            "width: 90%; height: 90%; margin: 2% auto;",
+            `width: ${vw * 0.9}px;`,
+            `height: ${vh * 0.9}px;`,
+            "margin: 2% auto;",
             "background: white; border: 4px solid #c29d9d;",
             "overflow-y: auto; -webkit-overflow-scrolling: touch;",
             "padding: 10px; box-sizing: border-box;"
@@ -28,13 +33,10 @@ function openPDF(filePath) {
             "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
         pdfjsLib.getDocument(filePath).promise.then(async (pdf) => {
-            await new Promise(r => requestAnimationFrame(r));
-            const displayWidth = container.clientWidth - 20;
-
             for (let i = 1; i <= pdf.numPages; i++) {
                 const page = await pdf.getPage(i);
                 const viewport = page.getViewport({ scale: 1 });
-                const scale = displayWidth / viewport.width;
+                const scale = containerWidth / viewport.width;
                 const scaled = page.getViewport({ scale });
 
                 const canvas = document.createElement("canvas");
