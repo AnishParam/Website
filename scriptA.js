@@ -3,6 +3,11 @@ clicksound.preload = 'auto';
 clicksound.play();
 clicksound.pause();
 
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
 function openPDF(filePath) {
     const pdfOverlay = document.getElementById("pdfOverlay");
 
@@ -61,8 +66,12 @@ function pageclick() {
             linkR.classList.add("clicked");
             clicksound.currentTime = 0;
             clicksound.play();
-            
-            openPDF("PDFs/Anish-Paramsothy-Resume.pdf");
+
+            if (isIOS()) {
+                window.open("PDFs/Anish-Paramsothy-Resume.pdf", "_blank");
+            } else {
+                openPDF("PDFs/Anish-Paramsothy-Resume.pdf");
+            }
 
             setTimeout(() => {
                 linkR.classList.remove("clicked");
