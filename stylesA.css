@@ -245,7 +245,8 @@ a:hover {
     cursor: pointer;
   }
 
-.pdf-overlay object {
+.pdf-overlay object,
+.pdf-overlay iframe {
     width: 90%;
     height: 90%;
     margin: 2% auto;

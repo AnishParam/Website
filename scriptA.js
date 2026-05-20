@@ -13,50 +13,19 @@ function openPDF(filePath) {
     const oldViewer = document.getElementById("pdfViewer");
 
     if (isIOS()) {
-        const container = document.createElement("div");
-        container.id = "pdfViewer";
-        container.style.cssText = [
-            "width: 90%; height: 90%; margin: 2% auto;",
-            "background: white; border: 4px solid #c29d9d;",
-            "overflow-y: auto; -webkit-overflow-scrolling: touch;",
-            "padding: 10px; box-sizing: border-box;"
-        ].join(" ");
-        oldViewer.replaceWith(container);
-        pdfOverlay.style.display = "block";
-
-        pdfjsLib.GlobalWorkerOptions.workerSrc =
-            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-        pdfjsLib.getDocument(filePath).promise.then(async (pdf) => {
-            await new Promise(r => requestAnimationFrame(r));
-            const displayWidth = container.clientWidth - 20;
-
-            for (let i = 1; i <= pdf.numPages; i++) {
-                const page = await pdf.getPage(i);
-                const viewport = page.getViewport({ scale: 1 });
-                const scale = displayWidth / viewport.width;
-                const scaled = page.getViewport({ scale });
-
-                const canvas = document.createElement("canvas");
-                canvas.width = scaled.width;
-                canvas.height = scaled.height;
-
-                const ctx = canvas.getContext("2d");
-                await page.render({ canvasContext: ctx, viewport: scaled }).promise;
-                container.appendChild(canvas);
-            }
-        }).catch(() => {
-            container.innerHTML =
-                "<p style='color:#333;padding:20px;text-align:center;'>Failed to load PDF.</p>";
-        });
+        const iframe = document.createElement("iframe");
+        iframe.id = "pdfViewer";
+        iframe.src = filePath;
+        oldViewer.replaceWith(iframe);
     } else {
         const newViewer = document.createElement("object");
         newViewer.id = "pdfViewer";
         newViewer.type = "application/pdf";
         newViewer.data = filePath;
         oldViewer.replaceWith(newViewer);
-        pdfOverlay.style.display = "block";
     }
+
+    pdfOverlay.style.display = "block";
 }
 
 function pageclick() {
@@ -141,10 +110,7 @@ window.onload = () => {
     pdfOverlay.addEventListener("click", () => {
         pdfOverlay.style.display = "none";
         const viewer = document.getElementById("pdfViewer");
-        if (viewer.tagName === "OBJECT") {
-            viewer.data = "";
-        } else if (viewer.tagName === "DIV") {
-            viewer.innerHTML = "";
-        }
+        viewer.data = "";
+        viewer.src = "";
     });
 };
