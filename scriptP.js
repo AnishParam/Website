@@ -196,48 +196,6 @@ function pageclick() {
     }
 }
 
-async function renderPDFInline(filePath, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-    try {
-        const pdf = await pdfjsLib.getDocument(filePath).promise;
-        const containerWidth = container.clientWidth;
-
-        if (containerWidth === 0) {
-            container.innerHTML =
-                "<p style='color:#333;padding:20px;text-align:center;'>Failed to load poster.</p>";
-            return;
-        }
-
-        const dpr = window.devicePixelRatio || 1;
-
-        for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const viewport = page.getViewport({ scale: 1 });
-            const displayScale = containerWidth / viewport.width;
-            const renderScale = displayScale * dpr;
-            const display = page.getViewport({ scale: displayScale });
-            const render = page.getViewport({ scale: renderScale });
-
-            const canvas = document.createElement("canvas");
-            canvas.width = render.width;
-            canvas.height = render.height;
-            canvas.style.width = display.width + "px";
-            canvas.style.height = display.height + "px";
-
-            const ctx = canvas.getContext("2d");
-            await page.render({ canvasContext: ctx, viewport: render }).promise;
-            container.appendChild(canvas);
-        }
-    } catch (err) {
-        container.innerHTML =
-            "<p style='color:#333;padding:20px;text-align:center;'>Failed to load poster.</p>";
-    }
-}
 
 function scrollfade() {
     const section = document.querySelectorAll('.fade-in');
@@ -279,7 +237,13 @@ window.onload = () => {
     window.addEventListener('scroll', scrollfade);
     window.addEventListener('resize', scrollfade);
 
-    renderPDFInline("PDFs/MT-Group-3.pdf", "posterViewer");
+    const posterViewer = document.getElementById("posterViewer");
+    if (posterViewer) {
+        const img = document.createElement("img");
+        img.src = "images/MT- Group 3.png";
+        img.alt = "MT Group 3 Poster";
+        posterViewer.appendChild(img);
+    }
 
     pdfOverlay.addEventListener("click", () => {
         pdfOverlay.style.display = "none";

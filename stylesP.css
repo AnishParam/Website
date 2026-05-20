@@ -416,7 +416,7 @@ a:hover {
     box-sizing: border-box;
 }
 
-#posterViewer canvas {
+#posterViewer img {
     display: block;
     margin: 0 auto 10px auto;
     max-width: 100%;
