@@ -3,16 +3,28 @@ clicksound.preload = 'auto';
 clicksound.play();
 clicksound.pause();
 
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
 function openPDF(filePath) {
     const pdfOverlay = document.getElementById("pdfOverlay");
-
     const oldViewer = document.getElementById("pdfViewer");
-    const newViewer = document.createElement("object");
-    newViewer.id = "pdfViewer";
-    newViewer.type = "application/pdf";
-    newViewer.data = filePath;
 
-    oldViewer.replaceWith(newViewer);
+    if (isIOS()) {
+        const iframe = document.createElement("iframe");
+        iframe.id = "pdfViewer";
+        iframe.src = filePath;
+        oldViewer.replaceWith(iframe);
+    } else {
+        const newViewer = document.createElement("object");
+        newViewer.id = "pdfViewer";
+        newViewer.type = "application/pdf";
+        newViewer.data = filePath;
+        oldViewer.replaceWith(newViewer);
+    }
+
     pdfOverlay.style.display = "block";
 }
 
@@ -97,6 +109,8 @@ window.onload = () => {
     
     pdfOverlay.addEventListener("click", () => {
         pdfOverlay.style.display = "none";
-        document.getElementById("pdfViewer").src = "";
+        const viewer = document.getElementById("pdfViewer");
+        viewer.data = "";
+        viewer.src = "";
     });
 };
